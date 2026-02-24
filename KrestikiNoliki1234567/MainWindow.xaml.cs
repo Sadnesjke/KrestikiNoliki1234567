@@ -6,7 +6,11 @@ namespace KrestikiNoliki1234567
     public partial class MainWindow : Window
     {
         private char[,] board = new char[3, 3];
-        private char currentPlayer = 'X';
+        private char player1Symbol = 'X';
+        private char player2Symbol = 'O';
+        private char currentPlayer;
+        private int scorePlayer1 = 0;
+        private int scorePlayer2 = 0;
         private Button[,] buttons;
 
         public MainWindow()
@@ -26,8 +30,18 @@ namespace KrestikiNoliki1234567
             };
         }
 
+        private void UpdateSymbols()
+        {
+            if (!string.IsNullOrEmpty(Player1SymbolBox.Text))
+                player1Symbol = Player1SymbolBox.Text[0];
+            if (!string.IsNullOrEmpty(Player2SymbolBox.Text))
+                player2Symbol = Player2SymbolBox.Text[0];
+        }
+
         private void NewGame()
         {
+            UpdateSymbols();
+
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
                 {
@@ -35,8 +49,24 @@ namespace KrestikiNoliki1234567
                     buttons[i, j].Content = "";
                     buttons[i, j].IsEnabled = true;
                 }
-            currentPlayer = 'X';
-            Title = "Крестики-нолики v1.0 — Ходит X";
+            currentPlayer = player1Symbol;
+            UpdateTitle();
+        }
+
+        private void NewGame_Click(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+        }
+
+        private void UpdateTitle()
+        {
+            Title = $"Крестики-нолики v2.0 — Ходит {currentPlayer}";
+        }
+
+        private void UpdateScoreDisplay()
+        {
+            Player1ScoreText.Text = $"Игрок 1 ({player1Symbol}): {scorePlayer1}";
+            Player2ScoreText.Text = $"Игрок 2 ({player2Symbol}): {scorePlayer2}";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -56,6 +86,11 @@ namespace KrestikiNoliki1234567
                         if (CheckWinner())
                         {
                             MessageBox.Show($"Игрок {currentPlayer} победил!");
+                            if (currentPlayer == player1Symbol)
+                                scorePlayer1++;
+                            else
+                                scorePlayer2++;
+                            UpdateScoreDisplay();
                             NewGame();
                             return;
                         }
@@ -67,8 +102,8 @@ namespace KrestikiNoliki1234567
                             return;
                         }
 
-                        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
-                        Title = $"Крестики-нолики v1.0 — Ходит {currentPlayer}";
+                        currentPlayer = (currentPlayer == player1Symbol) ? player2Symbol : player1Symbol;
+                        UpdateTitle();
                         return;
                     }
         }

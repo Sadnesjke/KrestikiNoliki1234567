@@ -1,36 +1,69 @@
 ﻿<Window x:Class="KrestikiNoliki1234567.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Крестики-нолики v1.0" Height="400" Width="400" ResizeMode="NoResize">
-    <Grid>
+        Title="Крестики-нолики v2.0" Height="500" Width="450" ResizeMode="NoResize">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Первая версия" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="0" Text="Крестики-нолики v2.0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="5"/>
 
-        <Grid Grid.Row="1" x:Name="GameGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Игрок 1:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="Player1SymbolBox" Text="X" Width="30" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Игрок 2:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="Player2SymbolBox" Text="O" Width="30" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </Grid>
+
+        <Button Grid.Row="2" Content="Новая игра" Click="NewGame_Click" Margin="5" Padding="5"/>
+
+        <Grid Grid.Row="3" x:Name="GameGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="Btn00" Grid.Row="0" Grid.Column="0" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn01" Grid.Row="0" Grid.Column="1" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn02" Grid.Row="0" Grid.Column="2" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn10" Grid.Row="1" Grid.Column="0" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn11" Grid.Row="1" Grid.Column="1" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn12" Grid.Row="1" Grid.Column="2" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn20" Grid.Row="2" Grid.Column="0" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn21" Grid.Row="2" Grid.Column="1" Click="Button_Click" FontSize="48"/>
-            <Button x:Name="Btn22" Grid.Row="2" Grid.Column="2" Click="Button_Click" FontSize="48"/>
+            <Button x:Name="Btn00" Grid.Row="0" Grid.Column="0" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn01" Grid.Row="0" Grid.Column="1" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn02" Grid.Row="0" Grid.Column="2" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn10" Grid.Row="1" Grid.Column="0" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn11" Grid.Row="1" Grid.Column="1" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn12" Grid.Row="1" Grid.Column="2" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn20" Grid.Row="2" Grid.Column="0" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn21" Grid.Row="2" Grid.Column="1" Click="Button_Click" FontSize="32" Margin="2"/>
+            <Button x:Name="Btn22" Grid.Row="2" Grid.Column="2" Click="Button_Click" FontSize="32" Margin="2"/>
+        </Grid>
+
+        <Grid Grid.Row="4" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="Player1ScoreText" Text="Игрок 1: 0" FontSize="14" FontWeight="Bold" Margin="5"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="Player2ScoreText" Text="Игрок 2: 0" FontSize="14" FontWeight="Bold" Margin="5"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
